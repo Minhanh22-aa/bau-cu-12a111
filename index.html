@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bầu cử Chi Đoàn 12A11</title>
+  <style>
+:root{
+  --navy:#1b2758;
+  --navy2:#16234f;
+  --blue:#2946a0;
+  --blue2:#223c8d;
+  --purple:#8d36e9;
+  --cyan:#36dbc2;
+  --text:#15203b;
+  --muted:#6e7895;
+  --card:#f5f7fc;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:linear-gradient(130deg,#2e3e96 0%,#1f3f8d 48%,#18274d 100%);min-height:100vh}
+.header{height:114px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 max(28px,calc((100% - 1170px)/2));box-shadow:0 2px 16px rgba(0,0,0,.2)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#ff8a43,#ff4d56);display:grid;place-items:center;color:white;font-size:27px;box-shadow:0 7px 18px rgba(0,0,0,.18)}
+.eyebrow,.green-eyebrow{font-size:12px;letter-spacing:1.2px;font-weight:800;color:#ff6d82}
+.green-eyebrow{color:var(--cyan)}
+.brand-title{font-size:23px;font-weight:900;color:#fff;margin-top:3px}
+nav{display:flex;gap:11px}
+.nav-btn,.logout-btn{border:1px solid rgba(255,255,255,.12);background:#202d56;color:#e8ecf8;padding:12px 19px;border-radius:12px;font-weight:800;cursor:pointer}
+.nav-btn.active{background:linear-gradient(100deg,#5762ef,#9c2ce8);color:#fff;border-color:transparent}
+.page{max-width:1170px;margin:30px auto 70px;padding:0 0}
+.hero{background:linear-gradient(110deg,#185796,#205d98);border:1px solid rgba(49,221,195,.22);border-radius:16px;padding:27px 24px;display:flex;justify-content:space-between;align-items:center;gap:25px;box-shadow:0 8px 22px rgba(12,34,83,.2)}
+.hero h1,.vote-header h1{margin:5px 0 5px;color:#fff;font-size:24px}
+.hero p,.vote-header p{margin:0;color:#d3dcf1}
+.danger-btn{border:1px solid #ec4e87;color:#ff7894;background:rgba(124,23,84,.17);padding:11px 16px;border-radius:11px;font-weight:800;cursor:pointer;white-space:nowrap}
+.candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-top:29px}
+.candidate-card{background:#f7f8fc;border-radius:15px;padding:15px 15px 16px;box-shadow:0 10px 18px rgba(8,27,71,.2)}
+.avatar{width:59px;height:59px;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;color:white;font-size:22px;font-weight:900;border:2px solid #6f5fff}
+.avatar.tv{background:linear-gradient(145deg,#ee469f,#744eff)}
+.avatar.ct{background:linear-gradient(145deg,#ff9e16,#f6a800)}
+.avatar.dt{background:linear-gradient(145deg,#8b73ff,#5c60eb)}
+.avatar.lt{background:linear-gradient(145deg,#00bc7c,#0fa5a6)}
+.avatar.vb{background:linear-gradient(145deg,#9c59f6,#6850e5)}
+.candidate-card h3{text-align:center;font-size:14px;margin:0 0 20px}
+.lines{font-size:12px;color:#4f5872;line-height:1.65}
+.line{display:flex;justify-content:space-between}.line b{font-size:14px;color:#ff3155}.line:nth-child(2) b{color:#e89a00}.line:nth-child(3) b{color:#03a47a}
+.total{margin-top:14px;border-top:1px solid #d9dce7;text-align:center;padding-top:11px;color:#7d879e;font-size:11px}.total strong{display:block;font-size:18px;color:#4f50f2;margin-top:3px}
+.chart-card,.auth-card,.vote-card{background:#f7f8fc;border-radius:16px;box-shadow:0 10px 20px rgba(7,25,70,.18)}
+.chart-card{margin-top:28px;padding:22px 24px;min-height:185px}
+.chart-card h2{font-size:17px;margin:0 0 17px}.empty{text-align:center;color:#a5acc0;font-style:italic;padding:38px 0}
+.bar-row{display:grid;grid-template-columns:85px 1fr 50px;align-items:center;gap:10px;margin:12px 0;font-size:12px;font-weight:700}
+.bar-bg{height:12px;border-radius:99px;background:#dde3f2;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,#5265f4,#9d3ce7);border-radius:99px}
+.auth-card{max-width:480px;margin:0 auto 24px;padding:22px;display:none}
+.auth-card.show{display:block}
+.auth-tabs{display:flex;gap:7px;margin-bottom:18px}.auth-tab{flex:1;padding:11px;border:0;border-radius:10px;background:#e7ebf4;font-weight:800;cursor:pointer}.auth-tab.active{background:#3149a3;color:#fff}
+.auth-card h2{font-size:20px;margin:4px 0 15px}.auth-card input{width:100%;padding:12px;border:1px solid #cfd5e3;border-radius:10px;margin:0 0 11px;font-size:15px}
+.full{width:100%}.gradient-btn{border:0;border-radius:11px;padding:13px 18px;color:#fff;background:linear-gradient(100deg,#5564f6,#9a2ce6);font-weight:900;cursor:pointer}
+.msg{min-height:20px;text-align:center;font-weight:700;font-size:13px}.hidden{display:none!important}
+.vote-header{padding:25px 0 18px;display:flex;justify-content:space-between;align-items:center}.vote-card{padding:25px 27px}
+.position-block{padding:0 0 23px;margin-bottom:21px;border-bottom:1px solid #e0e4ee}.position-title{display:flex;align-items:center;gap:12px;font-weight:900;color:#5261e7}.position-title span{color:#18203e}.position-title small{font-weight:600;color:#8a93aa}
+.option-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:15px}
+.option{position:relative}.option input{display:none}.option label{display:block;text-align:center;padding:15px;border:2px solid #d6dae5;border-radius:12px;background:white;font-weight:800;cursor:pointer}.option input:checked+label{border-color:#5363f4;background:#ecefff;color:#3a4ad0}
+.submit-vote{width:100%;margin-top:2px}.voted-notice{margin-top:12px;background:#e8fbf3;color:#067647;padding:13px;border-radius:11px;display:flex;flex-direction:column;gap:3px}
+footer{height:82px;background:#142247;color:#8793b2;display:grid;place-items:center;font-size:11px}
+@media(max-width:900px){.header{padding:0 18px}.candidate-grid{grid-template-columns:repeat(2,1fr)}.page{padding:0 14px}.option-grid{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column;align-items:flex-start}}
+@media(max-width:560px){.header{height:auto;padding:15px;gap:16px;flex-direction:column;align-items:flex-start}.brand-title{font-size:19px}nav{width:100%}.nav-btn{flex:1}.candidate-grid{grid-template-columns:1fr 1fr}.hero h1,.vote-header h1{font-size:20px}.vote-header{align-items:flex-start;gap:15px;flex-direction:column}.option-grid{grid-template-columns:1fr 1fr}}
+
+.vote-instruction{display:flex;flex-direction:column;gap:5px;margin-bottom:19px;padding-bottom:15px;border-bottom:1px solid #dfe3ec;color:#25304a}.vote-instruction strong{font-size:13px;color:#4e5be4}.vote-instruction span{font-size:12px;color:#78829a}.voter-candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}.voter-card{background:#f7f8fc;border-radius:15px;padding:14px 12px 13px;box-shadow:0 4px 10px rgba(10,25,63,.08);border:1px solid #e1e5ee}.voter-card .avatar{width:64px;height:64px;margin-bottom:10px}.voter-card h3{text-align:center;font-size:14px;margin:0 0 5px}.tagline{text-align:center;color:#7f8aa2;font-size:11px;font-style:italic;min-height:31px;line-height:1.45;margin-bottom:9px}.assign-title{text-align:center;color:#9aa4bb;font-size:10px;font-weight:900;border-top:1px solid #e2e5ed;padding-top:9px;margin-bottom:7px}.role-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.role-btn{border:0;border-radius:7px;padding:8px 4px;background:#e7ebf3;color:#44506a;font-size:10px;font-weight:800;cursor:pointer}.role-btn.selected.secretary{background:#ff426e;color:#fff}.role-btn.selected.deputy{background:#f0a616;color:#fff}.role-btn.selected.member{background:#13aa83;color:#fff}.voter-card.invalid{animation:shake .25s linear 2;border-color:#ff5070}@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@media(max-width:900px){.voter-candidate-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.voter-candidate-grid{grid-template-columns:1fr 1fr}.role-btn{font-size:9px;padding:8px 2px}}
+
+.selection-summary{margin:20px 0 14px;padding:13px 16px;background:#eef1fb;border-radius:11px;font-size:13px;color:#25304a;display:flex;flex-direction:column;gap:4px}.selection-summary b{color:#4e5be4}
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="brand-icon">▣</div>
+      <div>
+        <div class="eyebrow">ĐẠI HỘI CHI ĐOÀN</div>
+        <div class="brand-title">BCH ĐOÀN LỚP 12A11</div>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-btn" id="voteNav">▣ &nbsp; Bỏ Phiếu</button>
+      <button class="nav-btn active" id="resultNav">◉ &nbsp; Kết Quả Trực Quan</button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div id="authPanel" class="auth-card">
+      <form id="loginForm">
+        <h2>Đăng nhập để bỏ phiếu</h2>
+        <input id="loginUser" type="text" placeholder="Tên (2 chữ cuối, vd: Thanh Vy)" autocomplete="off" required>
+        <input id="loginPass" type="password" inputmode="numeric" placeholder="Số thứ tự (mật khẩu)" autocomplete="off" required>
+        <button class="gradient-btn full" type="submit">Đăng nhập</button>
+        <p id="loginMsg" class="msg"></p>
+      </form>
+    </div>
+
+    <section id="resultsPage">
+      <section class="hero">
+        <div>
+          <div class="green-eyebrow">THỐNG KÊ DỮ LIỆU</div>
+          <h1>Kết Quả Bầu Cử Chi Đoàn 12A11</h1>
+          <p>Tổng hợp số lượt phiếu bầu tín nhiệm cho các ứng cử viên.</p>
+        </div>
+        <button id="resetBtn" class="danger-btn">▣ &nbsp; Xóa Toàn Bộ Dữ Liệu Vote</button>
+      </section>
+
+      <section class="candidate-grid" id="candidateCards"></section>
+
+      <section class="chart-card">
+        <h2>▥ &nbsp; Biểu đồ tổng hợp số phiếu tín nhiệm</h2>
+        <div id="chart" class="chart">
+          <div class="empty">Chưa có dữ liệu phiếu bầu nào được ghi nhận.</div>
+        </div>
+      </section>
+    </section>
+
+    <section id="votePage" class="hidden">
+      <div class="vote-header">
+        <div>
+          <div class="green-eyebrow">PHIẾU BẦU TRỰC TUYẾN</div>
+          <h1>Bầu Cử BCH Đoàn Lớp 12A11</h1>
+          <p id="welcome"></p>
+        </div>
+        <button id="logoutBtn" class="logout-btn">Đăng xuất</button>
+      </div>
+
+      <form id="voteForm" class="vote-card">
+        <div class="vote-instruction">
+          <strong>CHỌN CHỨC VỤ CHO TỪNG ỨNG CỬ VIÊN</strong>
+          <span>Bí thư: 1 người · Phó Bí thư: 1 người · Ủy viên: có thể chọn nhiều người</span>
+        </div>
+        <div class="voter-candidate-grid" id="voterCandidates"></div>
+        <div id="selectionSummary" class="selection-summary"></div>
+        <button type="submit" class="gradient-btn submit-vote">XÁC NHẬN VÀ GỬI PHIẾU BẦU</button>
+        <p id="voteMsg" class="msg"></p>
+        <div id="votedNotice" class="voted-notice hidden">
+          <strong>Tài khoản này đã bỏ phiếu.</strong>
+          <span>Mỗi tài khoản chỉ được gửi một phiếu.</span>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>Hệ thống Điện tử Bầu cử Chi Đoàn 12A11 © 2026. Bảo lưu mọi quyền.</footer>
+
+<script>
+const candidates = [
+  {id:"TV", name:"Thanh Vy", cls:"tv"},
+  {id:"CT", name:"Cát Tường", cls:"ct"},
+  {id:"ĐT", name:"Đoàn Thư", cls:"dt"},
+  {id:"LT", name:"Lang Thanh", cls:"lt"},
+  {id:"VB", name:"Võ Bảo", cls:"vb"}
+];
+// ====== DANH SÁCH LỚP ======
+// Tên đăng nhập = name (2 chữ cuối của họ tên), mật khẩu = stt (số thứ tự).
+const ROSTER=[
+  {stt:1, name:"Ngọc An"},
+  {stt:2, name:"Hoài An"},
+  {stt:3, name:"Thùy Anh"},
+  {stt:4, name:"Minh Anh"},
+  {stt:5, name:"Ngọc Anh"},
+  {stt:6, name:"Thái Bảo"},
+  {stt:7, name:"Gia Bảo"},
+  {stt:8, name:"Thái Bảo"},
+  {stt:9, name:"Ngọc Bích"},
+  {stt:10, name:"Tiến Đạt"},
+  {stt:11, name:"Gia Hân"},
+  {stt:12, name:"Gia Hân"},
+  {stt:13, name:"Ngọc Hân"},
+  {stt:14, name:"Chi Lập"},
+  {stt:15, name:"Tuyết Mai"},
+  {stt:16, name:"Thúy Ngân"},
+  {stt:17, name:"Thảo Nghi"},
+  {stt:18, name:"Bảo Ngọc"},
+  {stt:19, name:"Hữu Nhân"},
+  {stt:20, name:"Hoàng Nhân"},
+  {stt:21, name:"Tuyết Nhi"},
+  {stt:22, name:"Thúy Nhi"},
+  {stt:23, name:"Yến Nhi"},
+  {stt:24, name:"Ngọc Như"},
+  {stt:25, name:"Tiến Phát"},
+  {stt:26, name:"Như Quỳnh"},
+  {stt:27, name:"Sơn Tuyền"},
+  {stt:28, name:"Cát Tường"},
+  {stt:29, name:"Lang Thanh"},
+  {stt:30, name:"Anh Thư"},
+  {stt:31, name:"Bảo Thư"},
+  {stt:32, name:"Anh Thư"},
+  {stt:33, name:"Anh Thương"},
+  {stt:34, name:"Khánh Vy"},
+  {stt:35, name:"Mai Vy"},
+  {stt:36, name:"Tường Vy"},
+  {stt:37, name:"Khánh Vy"},
+  {stt:38, name:"Thanh Vy"},
+  {stt:39, name:"Thanh Vy"},
+  {stt:40, name:"Thúy Vy"},
+  {stt:41, name:"Bảo Vy"},
+  {stt:42, name:"Như Ý"},
+  {stt:43, name:"Như Ý"},
+  {stt:44, name:"Gia Khang"}
+];
+const VOTES="cd12a11_votes", SESSION="cd12a11_session";
+// Chuẩn hóa tên: bỏ dấu, bỏ khoảng trắng thừa, không phân biệt hoa/thường
+const norm=t=>t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/gi,"d").toLowerCase().replace(/\s+/g," ").trim();
+const findStudent=stt=>ROSTER.find(r=>String(r.stt)===String(stt));
+const $=id=>document.getElementById(id);
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+
+function card(c){
+  return `<article class="candidate-card">
+    <div class="avatar ${c.cls}">${c.id}</div>
+    <h3>${c.name}</h3>
+    <div class="lines">
+      <div class="line"><span>Bí thư:</span><b data-k="secretary" data-c="${c.id}">0</b></div>
+      <div class="line"><span>Phó BT:</span><b data-k="deputy" data-c="${c.id}">0</b></div>
+      <div class="line"><span>Ủy viên:</span><b data-k="member" data-c="${c.id}">0</b></div>
+    </div>
+    <div class="total">Tổng phiếu:<strong data-total="${c.id}">0</strong></div>
+  </article>`;
+}
+$("candidateCards").innerHTML=candidates.map(card).join("");
+
+const taglines={
+  TV:'"Năng động, sáng tạo và trách nhiệm cao."',
+  CT:'"Tận tâm, đoàn kết và tiên phong."',
+  ĐT:'"Chủ động, nhiệt huyết và trách nhiệm."',
+  LT:'"Đoàn kết, năng động, hết mình."',
+  VB:'"Công bằng, trách nhiệm và cầu tiến."'
+};
+const selected={secretary:null,deputy:null,member:[]};
+const nameOf=id=>candidates.find(c=>c.id===id)?.name;
+function roleOf(id){
+  if(selected.secretary===id) return "secretary";
+  if(selected.deputy===id) return "deputy";
+  if(selected.member.includes(id)) return "member";
+  return null;
+}
+function renderVoterCards(){
+  $("voterCandidates").innerHTML=candidates.map(c=>`
+    <article class="voter-card" data-candidate="${c.id}">
+      <div class="avatar ${c.cls}">${c.id}</div>
+      <h3>${c.name}</h3>
+      <div class="tagline">${taglines[c.id]}</div>
+      <div class="assign-title">GÁN CHỨC VỤ:</div>
+      <div class="role-row">
+        <button type="button" class="role-btn" data-role="secretary" data-c="${c.id}">Bí Thư</button>
+        <button type="button" class="role-btn" data-role="deputy" data-c="${c.id}">P.Bí Thư</button>
+        <button type="button" class="role-btn" data-role="member" data-c="${c.id}">Ủy Viên</button>
+      </div>
+    </article>`).join("");
+  $("voterCandidates").querySelectorAll(".role-btn").forEach(btn=>btn.addEventListener("click",()=>chooseRole(btn)));
+  updateSelectionUI();
+}
+// Mỗi người chỉ giữ 1 chức vụ; Bí thư / Phó Bí thư chỉ có 1 người (chọn người khác sẽ thay thế); Ủy viên chọn được nhiều người.
+function chooseRole(btn){
+  const role=btn.dataset.role, id=btn.dataset.c;
+  const current=roleOf(id);
+  if(selected.secretary===id) selected.secretary=null;
+  if(selected.deputy===id) selected.deputy=null;
+  selected.member=selected.member.filter(x=>x!==id);
+  if(current!==role){            // bấm lại đúng chức vụ đang chọn = bỏ chọn
+    if(role==="member") selected.member.push(id);
+    else selected[role]=id;
+  }
+  $("voteMsg").textContent="";
+  updateSelectionUI();
+}
+function updateSelectionUI(){
+  document.querySelectorAll(".role-btn").forEach(b=>{
+    const on=roleOf(b.dataset.c)===b.dataset.role;
+    b.classList.toggle("selected",on);
+    b.classList.toggle(b.dataset.role,on);
+  });
+  const sec=selected.secretary?nameOf(selected.secretary):"chưa chọn";
+  const dep=selected.deputy?nameOf(selected.deputy):"chưa chọn";
+  const mem=selected.member.length?selected.member.map(nameOf).join(", "):"chưa chọn";
+  $("selectionSummary").innerHTML=
+    `<div><b>Bí thư:</b> ${sec}</div><div><b>Phó Bí thư:</b> ${dep}</div><div><b>Ủy viên:</b> ${mem}</div>`;
+}
+function resetSelection(){
+  selected.secretary=null;selected.deputy=null;selected.member=[];
+  updateSelectionUI();
+}
+renderVoterCards();
+
+function renderResults(){
+  const votes=load(VOTES,[]);
+  const count={}; candidates.forEach(c=>count[c.id]={secretary:0,deputy:0,member:0,total:0});
+  votes.forEach(v=>{
+    if(v.secretary) count[v.secretary].secretary++;
+    if(v.deputy) count[v.deputy].deputy++;
+    (v.member||[]).forEach(id=>count[id].member++);
+  });
+  candidates.forEach(c=>{
+    count[c.id].total=count[c.id].secretary+count[c.id].deputy+count[c.id].member;
+    document.querySelector(`[data-k="secretary"][data-c="${c.id}"]`).textContent=count[c.id].secretary;
+    document.querySelector(`[data-k="deputy"][data-c="${c.id}"]`).textContent=count[c.id].deputy;
+    document.querySelector(`[data-k="member"][data-c="${c.id}"]`).textContent=count[c.id].member;
+    document.querySelector(`[data-total="${c.id}"]`).textContent=count[c.id].total;
+  });
+  const positions=[
+    ["Bí thư","secretary"],
+    ["Phó Bí thư","deputy"],
+    ["Ủy viên","member"]
+  ];
+  let total=0;
+  let html="";
+  for(const [title,key] of positions){
+    const sums=candidates.reduce((n,c)=>n+count[c.id][key],0); total+=sums;
+    html+=`<div style="margin-top:20px;font-weight:900">${title}</div>`;
+    candidates.forEach(c=>{
+      const n=count[c.id][key], pct=sums?Math.round(n/sums*100):0;
+      html+=`<div class="bar-row"><span>${c.name}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div><span>${n}</span></div>`;
+    });
+  }
+  $("chart").innerHTML = total ? html : `<div class="empty">Chưa có dữ liệu phiếu bầu nào được ghi nhận.</div>`;
+}
+function setAuth(show){$("authPanel").classList.toggle("show",show);$("resultsPage").classList.toggle("hidden",!show);}
+function showPage(type){
+  if(type==="vote"){
+    const user=localStorage.getItem(SESSION);
+    if(!user){setAuth(true); return;}
+    $("resultsPage").classList.add("hidden");$("votePage").classList.remove("hidden");
+    const st=findStudent(user);$("welcome").textContent=st?`Xin chào ${st.name} (STT ${st.stt})`:"";
+    const mine=load(VOTES,[]).some(v=>v.user===user);
+    $("voteForm").classList.toggle("hidden",mine);$("votedNotice").classList.toggle("hidden",!mine);
+  }else{
+    $("votePage").classList.add("hidden");$("resultsPage").classList.remove("hidden");renderResults();
+  }
+}
+$("loginForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const u=norm($("loginUser").value), p=$("loginPass").value.trim();
+  const st=ROSTER.find(r=>norm(r.name)===u && String(r.stt)===p);
+  if(st){localStorage.setItem(SESSION,String(st.stt));$("loginMsg").textContent="";$("loginPass").value="";showPage("vote")}
+  else $("loginMsg").textContent="Tên hoặc số thứ tự không đúng.";
+});
+$("voteNav").onclick=()=>showPage("vote");$("resultNav").onclick=()=>showPage("result");
+$("logoutBtn").onclick=()=>{localStorage.removeItem(SESSION);resetSelection();showPage("result");setAuth(true)};
+$("voteForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const user=localStorage.getItem(SESSION);
+  const secretary=selected.secretary, deputy=selected.deputy, member=[...selected.member];
+  if(!secretary||!deputy||!member.length){
+    $("voteMsg").textContent="Vui lòng chọn 1 Bí thư, 1 Phó Bí thư và ít nhất 1 Ủy viên.";
+    return;
+  }
+  const votes=load(VOTES,[]); if(votes.some(v=>v.user===user)){showPage("vote");return}
+  votes.push({user,secretary,deputy,member});save(VOTES,votes);resetSelection();$("voteMsg").textContent="Đã ghi nhận phiếu bầu.";showPage("vote");
+});
+$("resetBtn").onclick=()=>{if(confirm("Xóa toàn bộ phiếu bầu?")){localStorage.removeItem(VOTES);renderResults()}};
+setAuth(true); renderResults();
+
+</script>
+</body>
+</html>
